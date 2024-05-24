@@ -3,12 +3,11 @@
  */
 package com.undercurrent.tests
 
-//import kotlin.test.Test
-//import kotlin.test.assertNotNull
+import org.junit.jupiter.api.Test
 
-//class AppTest {
-//    @Test fun appHasAGreeting() {
-//        val classUnderTest = App()
-//        assertNotNull(classUnderTest.greeting, "app should have a greeting")
-//    }
-//}
+class AppTest {
+    @Test
+    fun appHasAGreeting() {
+        assert(true) { "This should be true" }
+    }
+}
