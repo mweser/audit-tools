@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "audit-tools"
-include("app")
+//include("app")
