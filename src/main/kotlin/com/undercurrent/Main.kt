@@ -13,6 +13,9 @@ fun main() {
     val pemFilePath = properties.getProperty("pemFilePath")
     val awsInstanceAddress = properties.getProperty("awsInstanceAddress")
 
+    val pemProdFilePath = properties.getProperty("pemProdFilePath")
+    val awsProdInstanceAddress = properties.getProperty("awsProdInstanceAddress")
+
     // Example usage
     println("PEM File Path: $pemFilePath")
     println("AWS Instance Address: $awsInstanceAddress")
