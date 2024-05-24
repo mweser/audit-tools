@@ -12,20 +12,26 @@ fun main() {
 
     val pemFilePath = properties.getProperty("pemFilePath")
     val awsInstanceAddress = properties.getProperty("awsInstanceAddress")
-
-    val pemProdFilePath = properties.getProperty("pemProdFilePath")
-    val awsProdInstanceAddress = properties.getProperty("awsProdInstanceAddress")
+    val databasePath = properties.getProperty("databasePath")
 
     // Example usage
     println("PEM File Path: $pemFilePath")
     println("AWS Instance Address: $awsInstanceAddress")
+    println("Database Path: $databasePath")
 
     // Start scheduled coroutine job
-    val auditService = AuditService(pemFilePath, awsInstanceAddress)
-    auditService.startCoroutineJob(::performAudit, 0, 10000L)
+    val auditService = AuditService(pemFilePath, awsInstanceAddress, databasePath)
+    auditService.startCoroutineJob(auditService::performAudit, 0, 10000L)
 }
 
-class AuditService(private val pemFilePath: String, private val awsInstanceAddress: String) {
+class AuditService(
+    private val pemFilePath: String,
+    private val awsInstanceAddress: String,
+    private val databasePath: String
+) {
+    private val blockchainQueryModule = BlockchainQueryModule()
+    private val databaseQueryModule = DatabaseQueryModule(databasePath)
+
     fun startCoroutineJob(workerFunction: suspend () -> Unit, delayMs: Long = 0, periodMs: Long = 1000) {
         val coroutineScope = CoroutineScope(Dispatchers.IO)
 
@@ -40,12 +46,20 @@ class AuditService(private val pemFilePath: String, private val awsInstanceAddre
         Runtime.getRuntime().addShutdownHook(Thread {
             runBlocking {
                 job.cancelAndJoin()
+                blockchainQueryModule.close()
             }
         })
     }
-}
 
-suspend fun performAudit() {
-    // Your audit logic here
-    println("Performing audit...")
+    suspend fun performAudit() {
+        // Your audit logic here
+        println("Performing audit...")
+        val events = databaseQueryModule.getDefunctCryptoReceiveEvents()
+        events.forEach {
+            val address = it[DefunctCryptoReceiveEvents.receivingAddress]
+            val blockchainResponse = blockchainQueryModule.getTransactionDetails(address)
+            // Compare and log discrepancies
+            println("Address: ${blockchainResponse.address}")
+        }
+    }
 }
