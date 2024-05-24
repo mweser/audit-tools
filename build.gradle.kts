@@ -1,22 +1,3 @@
-object Versions {
-    const val KOTLIN = "1.9.22"
-    const val EXPOSED = "0.47.0"
-    const val KTOR = "2.3.4"
-    const val KOTLINX_COROUTINES = "1.8.0"
-    const val SQLITE_JDBC = "3.43.0.0"
-}
-
-object Dependencies {
-    const val EXPOSED_CORE = "org.jetbrains.exposed:exposed-core:${Versions.EXPOSED}"
-    const val EXPOSED_DAO = "org.jetbrains.exposed:exposed-dao:${Versions.EXPOSED}"
-    const val EXPOSED_JDBC = "org.jetbrains.exposed:exposed-jdbc:${Versions.EXPOSED}"
-    const val SQLITE_JDBC = "org.xerial:sqlite-jdbc:${Versions.SQLITE_JDBC}"
-    const val KTOR_CLIENT_CORE = "io.ktor:ktor-client-core:${Versions.KTOR}"
-    const val KTOR_CLIENT_CIO = "io.ktor:ktor-client-cio:${Versions.KTOR}"
-    const val KOTLINX_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLINX_COROUTINES}"
-    const val JUNIT5_KOTLIN = "org.jetbrains.kotlin:kotlin-test-junit5"
-}
-
 plugins {
     kotlin("jvm") version "1.9.22"
     application
@@ -68,7 +49,21 @@ tasks.named<Test>("test") {
 }
 
 
-//application {
-//    mainClass.set("MainKt")
-//}
-//
+object Versions {
+    const val KOTLIN = "1.9.22"
+    const val EXPOSED = "0.47.0"
+    const val KTOR = "2.3.4"
+    const val KOTLINX_COROUTINES = "1.8.0"
+    const val SQLITE_JDBC = "3.43.0.0"
+}
+
+object Dependencies {
+    const val EXPOSED_CORE = "org.jetbrains.exposed:exposed-core:${Versions.EXPOSED}"
+    const val EXPOSED_DAO = "org.jetbrains.exposed:exposed-dao:${Versions.EXPOSED}"
+    const val EXPOSED_JDBC = "org.jetbrains.exposed:exposed-jdbc:${Versions.EXPOSED}"
+    const val SQLITE_JDBC = "org.xerial:sqlite-jdbc:${Versions.SQLITE_JDBC}"
+    const val KTOR_CLIENT_CORE = "io.ktor:ktor-client-core:${Versions.KTOR}"
+    const val KTOR_CLIENT_CIO = "io.ktor:ktor-client-cio:${Versions.KTOR}"
+    const val KOTLINX_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLINX_COROUTINES}"
+    const val JUNIT5_KOTLIN = "org.jetbrains.kotlin:kotlin-test-junit5"
+}
