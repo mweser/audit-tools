@@ -1,4 +1,4 @@
-package com.undercurrent.library.utils
+package com.undercurrent.utils
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

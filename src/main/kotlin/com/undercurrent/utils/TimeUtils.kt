@@ -1,4 +1,4 @@
-package com.undercurrent.library.utils
+package com.undercurrent.utils
 
 import java.time.Instant
 import java.time.LocalDateTime

@@ -1,4 +1,4 @@
-package com.undercurrent
+package com.undercurrent.querymodules
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*

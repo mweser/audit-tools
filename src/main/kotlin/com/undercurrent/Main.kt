@@ -1,5 +1,8 @@
 package com.undercurrent
 
+import com.undercurrent.querymodules.BlockchainQueryModule
+import com.undercurrent.querymodules.DatabaseQueryModule
+import com.undercurrent.querymodules.DefunctCryptoReceiveEvents
 import kotlinx.coroutines.*
 import java.io.File
 import java.util.Properties
